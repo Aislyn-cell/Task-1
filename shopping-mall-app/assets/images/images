@@ -1,0 +1,16 @@
+shopping-mall-app
+├── assets
+│   └── images
+├── lib
+│   ├── main.dart
+│   ├── models
+│   │   └── product.dart
+│   ├── screens
+│   │   ├── home_screen.dart
+│   │   └── product_screen.dart
+│   ├── services
+│   │   └── api_service.dart
+│   └── widgets
+│       └── product_card.dart
+├── pubspec.yaml
+└── README.md

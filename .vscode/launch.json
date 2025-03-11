@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "shopping-mall-app",
+            "cwd": "shopping-mall-app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shopping-mall-app (profile mode)",
+            "cwd": "shopping-mall-app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "shopping-mall-app (release mode)",
+            "cwd": "shopping-mall-app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
