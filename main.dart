@@ -16,7 +16,7 @@ void main() {
   while (true) {
     // 메뉴 출력
     print(
-      "[1] 상품 목록 보기 / [2] 장바구니에 담기 / [3] 장바구니에 담긴 상품의 총 가격 보기 / [4] 프로그램 종료",
+      "[1] 상품 목록 보기 / [2] 장바구니에 담기 / [3] 장바구니에 담긴 상품의 총 가격 보기 / [4] 프로그램 종료 / [6] 장바구니 초기화",
     );
 
     // 사용자 입력 받기
@@ -30,11 +30,32 @@ void main() {
     } else if (input == "3") {
       showCartTotal(cart);
     } else if (input == "4") {
-      print("이용해 주셔서 감사합니다~ 안녕히 가세요!");
-      break;
+      stdout.write("정말 종료하시겠습니까? (5 입력 시 종료): ");
+      String? confirm = stdin.readLineSync();
+      if (confirm == "5") {
+        print("이용해 주셔서 감사합니다~ 안녕히 가세요!");
+        break;
+      } else {
+        print("종료를 취소합니다.");
+      }
+    } else if (input == "6") {
+      if (cart.isEmpty) {
+        print("이미 장바구니가 비어있습니다.");
+      } else {
+        cart.clear();
+        print("장바구니를 초기화했습니다.");
+      }
     } else {
       print("지원하지 않는 기능입니다! 다시 시도해 주세요.");
     }
+  }
+}
+
+// 상품 목록 출력 함수
+void showProductList(List<Product> products) {
+  print("상품 목록:");
+  for (int i = 0; i < products.length; i++) {
+    print("${i + 1}. ${products[i].name} (${products[i].price}원)");
   }
 }
 
@@ -46,15 +67,7 @@ class Product {
   Product(this.name, this.price);
 }
 
-// 상품 목록 보기 함수
-void showProductList(List<Product> products) {
-  print("상품 목록:");
-  for (int i = 0; i < products.length; i++) {
-    print("${i + 1}. ${products[i].name} (${products[i].price}원)");
-  }
-}
-
-// 장바구니에 담기 함수 수정
+// 장바구니에 담기 함수
 void addToCart(List<Product> products, List<Product> cart) {
   stdout.write("상품 이름을 입력해 주세요! ");
   String? productName = stdin.readLineSync();
@@ -89,11 +102,24 @@ void addToCart(List<Product> products, List<Product> cart) {
   }
 }
 
-// 장바구니에 담긴 상품의 총 가격 보기 함수 수정
+// 장바구니에 담긴 상품의 총 가격 보기 함수
 void showCartTotal(List<Product> cart) {
   int total = 0;
   for (Product product in cart) {
     total += product.price;
   }
   print("장바구니에 ${total}원 어치를 담으셨네요!");
+}
+
+// 장바구니 상세 정보 출력 함수
+void showCartDetails(List<Product> cart) {
+  if (cart.isEmpty) {
+    print("장바구니에 담긴 상품이 없습니다.");
+    return;
+  }
+
+  List<String> cartItems = cart.map((product) => product.name).toList();
+  int total = cart.fold(0, (sum, product) => sum + product.price);
+
+  print("장바구니에 ${cartItems.join(', ')}가 담겨있네요. 총 ${total}원 입니다!");
 }
